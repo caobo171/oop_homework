@@ -2,7 +2,7 @@
     //App Root
     define('APPROOT', dirname(dirname(__FILE__)));
     //URL Root/
-    define('URLROOT', 'http://'.$_SERVER['SERVER_NAME'].'/myapp');
+    define('URLROOT', 'http://'.$_SERVER['SERVER_NAME'].'/oop_homework');
     //Site Name
     define('SITENAME', 'Quản lí hộ dân');
     //App Version
