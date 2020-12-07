@@ -1,7 +1,7 @@
 <?php
   class Home extends Controller {
     public function __construct(){
-     
+      $this->householdModel = $this->model('HouseholdModel');
     }
     
     public function index(){
@@ -10,6 +10,7 @@
         'description' => 'Simple social network built on the TraversyMVC PHP framework'
       ];
      
+      $data = $this->householdModel->getHouseHolds();
       $this->view('pages/index', $data);
     }
 
