@@ -17,6 +17,17 @@
             return $results = $this->db->resultSet();
         }
 
+        public function getByType($id)
+        {
+            $this->db->query(
+                "SELECT *
+                 FROM Receipts
+                 WHERE type_id = {$id}
+            ");
+            return $results = $this->db->resultSet();
+        }
+
+
         public function add($data){
             $this->db->query('INSERT INTO Receipts (household_id, householder_name, type_id, amount, receive_date, description, since, last_update) 
             VALUES(:household_id, :householder_name, :type_id, :amount, :receive_date, :description, :since, :last_update)');

@@ -18,10 +18,9 @@
         }
 
         public function add($data){
-            $this->db->query('INSERT INTO ReceiptTypes (id, type_name, description, since, last_update) 
-            VALUES(:id, :type_name, :description, :since, :last_update)');
+            $this->db->query('INSERT INTO ReceiptTypes ( type_name, description, since, last_update) 
+            VALUES(:type_name, :description, :since, :last_update)');
             // Bind values
-            $this->db->bind(':id', $data['id']);
             $this->db->bind(':type_name', $data['type_name']);
             $this->db->bind(':description', $data['description']);
 
@@ -44,17 +43,9 @@
 
             // Bind values
             $this->db->bind(':id', $data['id']);
-            $this->db->bind(':name', $data['name']);
-            $this->db->bind(':nickname', $data['nickname']);
-            $this->db->bind(':birth_day', $data['birth_day']);
-            $this->db->bind(':native_place', $data['native_place']);
-            $this->db->bind(':sex', $data['sex']);
-            $this->db->bind(':ethnic', $data['ethnic']);
-            $this->db->bind(':id_card_no', $data['id_card_no']);
-            $this->db->bind(':job', $data['job']);
-            $this->db->bind(':job_place', $data['job_place']);
-            $this->db->bind(':household_id', $data['household_id']);
-            $this->db->bind(':householder_relationship', $data['householder_relationship']);
+            $this->db->bind(':type_name', $data['type_name']);
+            $this->db->bind(':description', $data['description']);
+
             $this->db->bind(':last_update',time());
         
             // Execute

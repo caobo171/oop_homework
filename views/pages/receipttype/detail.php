@@ -1,7 +1,12 @@
 
 <?php require APPROOT . '/views/inc/header.php'; ?>
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
-            <h1 class="h2">Khoản thu</h1>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4">
+            <div>
+            <h1 class="h3"><?php echo $data->type->type_name ?></h1>
+            
+            <small class="form-text text-muted"><?php echo $data->type->description ?></small>
+            </div>    
+       
             <div class="btn-toolbar mb-2 mb-md-0">
               <a class="btn btn-sm btn-outline-secondary" href="<?php echo URLROOT; ?>/receipt/add" >
                 Thêm khoản thu
