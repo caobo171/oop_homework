@@ -1,5 +1,6 @@
 
 <?php require APPROOT . '/views/inc/header.php'; ?>
+<h1 class="h2">Hộ dân</h1>
 <div class="row">
 <div class="col-3"></div>
 <div class="col-6 mt-4">

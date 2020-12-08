@@ -1,13 +1,12 @@
 <?php
-  class Household extends Controller {
+  class Receipttype extends Controller {
     public function __construct(){
-        $this->householdModel = $this->model('HouseholdModel');
+        $this->typeModel = $this->model('ReceiptTypeModel');
     }
     
     public function index(){
-    //   $this->view('pages/household/add', []);
-      $data = $this->householdModel->getAll();
-      $this->view('pages/index', $data);
+      $data = $this->typeModel->getAll();
+      $this->view('pages/receipttype/index', $data);
     }
 
     public function add(){
@@ -16,14 +15,12 @@
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
-                'house_no'         => trim($_POST['house_no']),
-                'house_street'     => trim($_POST['house_street']),
-                'house_ward'     => $_POST['house_ward'],
-                'house_city'      => $_POST['house_city']
+                'type_name'         => $_POST['type_name'],
+                'description'     => $_POST['description']
             ];
             //validated
-            if($this->householdModel->add($data)){
-                redirect('household');
+            if($this->typeModel->add($data)){
+                redirect('receipttype');
             }else{
                 die('Something went wrong');
             }
@@ -32,7 +29,7 @@
                 'title' => '',
                 'body'  => ''
             ];
-            $this->view('pages/household/add', $data);
+            $this->view('pages/receipttype/add', $data);
         }
     }
 

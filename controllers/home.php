@@ -10,7 +10,7 @@
         'description' => 'Simple social network built on the TraversyMVC PHP framework'
       ];
      
-      $data = $this->householdModel->getHouseHolds();
+      $data = $this->householdModel->getAll();
       $this->view('pages/index', $data);
     }
 

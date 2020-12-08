@@ -111,3 +111,11 @@ body {
     top: 70%;
     left: -100px;
 }
+
+.table-responsive {
+    overflow-x: unset;
+}
+
+.sidebar .nav-link {
+    font-size: 16px;
+}

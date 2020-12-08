@@ -10,7 +10,7 @@
 </head>
 <body>
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Household App</a>
       <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
@@ -24,21 +24,27 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="<?php echo URLROOT;?>/household">
-                <i class="fa fa-home" aria-hidden="true" ></i>
+                <a class="nav-link active" href="<?php echo URLROOT;?>/home">
+                <i class="fa fa-home mr-2" aria-hidden="true" ></i>
                   Hộ dân <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                <i class="fa fa-users" aria-hidden="true"></i>
+                <a class="nav-link" href="<?php echo URLROOT;?>/people">
+                <i class="fa fa-users mr-2" aria-hidden="true"></i>
                   Dân cư
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                <i class="fa fa-money" aria-hidden="true"></i>
+                <a class="nav-link" href="<?php echo URLROOT;?>/receipt">
+                <i class="fa fa-money mr-2" aria-hidden="true"></i>
                   Phí thu
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo URLROOT;?>/receipttype">
+                <i class="fa fa-money mr-2" aria-hidden="true"></i>
+                  Loại phí
                 </a>
               </li>
             </ul>

@@ -1,13 +1,13 @@
 <?php
-  class Household extends Controller {
+  class People extends Controller {
     public function __construct(){
-        $this->householdModel = $this->model('HouseholdModel');
+        $this->peopleModel = $this->model('PeopleModel');
     }
     
     public function index(){
     //   $this->view('pages/household/add', []);
-      $data = $this->householdModel->getAll();
-      $this->view('pages/index', $data);
+      $data = $this->peopleModel->getAll();
+      $this->view('pages/people/index', $data);
     }
 
     public function add(){
@@ -16,14 +16,17 @@
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
-                'house_no'         => trim($_POST['house_no']),
-                'house_street'     => trim($_POST['house_street']),
-                'house_ward'     => $_POST['house_ward'],
-                'house_city'      => $_POST['house_city']
+                'name'         => $_POST['name'],
+                'birth_day'     => $_POST['birth_day'],
+                'sex'     => $_POST['sex'],
+                'job'      => $_POST['job'],
+                'id_card_no' => $_POST['id_card_no'],
+                'job_place' => $_POST['job_place'],
+                'native_place' => $_POST['native_place']
             ];
             //validated
-            if($this->householdModel->add($data)){
-                redirect('household');
+            if($this->peopleModel->add($data)){
+                redirect('people');
             }else{
                 die('Something went wrong');
             }
@@ -32,7 +35,7 @@
                 'title' => '',
                 'body'  => ''
             ];
-            $this->view('pages/household/add', $data);
+            $this->view('pages/people/add', $data);
         }
     }
 
@@ -58,8 +61,8 @@
 
         }else{
             //get existing post from model
-            $household = $this->householdModel->getById($id);
-            $this->view('pages/household/edit', $household);
+            $household = $this->peopleModel->getById($id);
+            $this->view('pages/people/edit', $household);
         }        
     }
 
@@ -70,8 +73,8 @@
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             //validated
-            if($this->householdModel->delete($id)){
-                redirect('household');
+            if($this->peopleModel->delete($id)){
+                redirect('people');
             }else{
                 die('Something went wrong');
             }
