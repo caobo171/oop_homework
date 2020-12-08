@@ -32,10 +32,11 @@
 					<div class="dropdown">
 						<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 						<div class="dropdown-menu">
+                            <a class="dropdown-item" href="<?php echo URLROOT;?>/people/detail/<?php echo $item->id?>">Chi tiết</a>  
+                            <a class="dropdown-item" href="<?php echo URLROOT;?>/people/edit/<?php echo $item->id?>">Sửa</a>  
 							<form action="<?php echo URLROOT;?>/people/delete/<?php echo $item->id ?>" method="post">
 								<input  class="dropdown-item" type="submit" value="Xoá" >
-							</form>
-							<a class="dropdown-item" href="<?php echo URLROOT;?>/people/edit/<?php echo $item->id?>">Edit</a>        
+							</form>      
 						</div>
 					</div>    
 				</td>

@@ -77,7 +77,7 @@
         }
 
         public function getById($id){
-            $this->db->query('SELECT * FROM Reicepts WHERE id = :id');
+            $this->db->query('SELECT * FROM Receipts WHERE id = :id');
             $this->db->bind(':id', $id);
 
             $row = $this->db->single();
@@ -85,7 +85,7 @@
         }
 
         public function delete($id){
-            $this->db->query('DELETE FROM Reicepts WHERE id = :id');
+            $this->db->query('DELETE FROM Receipts WHERE id = :id');
             // Bind values
             $this->db->bind(':id', $id);
         

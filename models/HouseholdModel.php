@@ -36,7 +36,13 @@
         }
 
         public function update($data){
-            $this->db->query('UPDATE Household SET house_no = :house_no, house_street = :house_street, house_ward = :house_ward, house_city = :house_city, last_update = :last_update WHERE id = :id');
+            $this->db->query('UPDATE Household SET house_no = :house_no, 
+            house_street = :house_street, 
+            house_ward = :house_ward, 
+            house_city = :house_city, 
+            householder_id = :householder_id, 
+            householder_name = :householder_name,
+            last_update = :last_update WHERE id = :id');
 
             // Bind values
             $this->db->bind(':id', $data['id']);
@@ -44,6 +50,8 @@
             $this->db->bind(':house_street', $data['house_street']);
             $this->db->bind(':house_ward', $data['house_ward']);
             $this->db->bind(':house_city', $data['house_city']);
+            $this->db->bind(':householder_name', $data['householder_name']);
+            $this->db->bind(':householder_id', $data['householder_id']);
             $this->db->bind(':last_update',time());
         
             // Execute

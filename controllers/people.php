@@ -2,11 +2,27 @@
   class People extends Controller {
     public function __construct(){
         $this->peopleModel = $this->model('PeopleModel');
+        $this->householdModel = $this->model('HouseholdModel');
     }
     
     public function index(){
     //   $this->view('pages/household/add', []);
-      $data = $this->peopleModel->getAll();
+      $people = $this->peopleModel->getAll();
+      $households = $this->householdModel->getAll();
+    
+      $households_array = [];
+        foreach ($households as $household) {
+
+                $households_array[$household->id] = $household;
+            
+        }
+      
+
+      $data = (object)[
+          'households_array' => $households_array,
+          'people' => $people
+      ];
+
       $this->view('pages/people/index', $data);
     }
 
@@ -18,6 +34,7 @@
             $data = [
                 'name'         => $_POST['name'],
                 'birth_day'     => $_POST['birth_day'],
+                'household_id'    => $_POST['household_id'],
                 'sex'     => $_POST['sex'],
                 'job'      => $_POST['job'],
                 'id_card_no' => $_POST['id_card_no'],
@@ -31,9 +48,10 @@
                 die('Something went wrong');
             }
         }else{
-            $data = [
-                'title' => '',
-                'body'  => ''
+            //get existing post from model
+            $households = $this->householdModel->getAll();
+            $data = (object)[
+                'households' => $households,
             ];
             $this->view('pages/people/add', $data);
         }
@@ -45,24 +63,35 @@
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
-                'id'            => (int)$id,
-                'house_no'         => trim($_POST['house_no']),
-                'house_street'     => trim($_POST['house_street']),
-                'house_ward'     => $_POST['house_ward'],
-                'house_city'      => $_POST['house_city']
+                'id'           => (int)$id,
+                'name'         => $_POST['name'],
+                'birth_day'    => $_POST['birth_day'],
+                'household_id'    => $_POST['household_id'],
+                'sex'     => $_POST['sex'],
+                'job'      => $_POST['job'],
+                'ethnic'   => $_POST['ethnic'],
+                'id_card_no' => $_POST['id_card_no'],
+                'job_place' => $_POST['job_place'],
+                'native_place' => $_POST['native_place']
             ];
 
             //validated
-            if($this->householdModel->update($data)){
-                redirect('household');
+            if($this->peopleModel->update($data)){
+                redirect('people');
             }else{
                 die('Something went wrong');
             }
 
         }else{
             //get existing post from model
-            $household = $this->peopleModel->getById($id);
-            $this->view('pages/people/edit', $household);
+            $households = $this->householdModel->getAll();
+            $person = $this->peopleModel->getById($id);
+
+            $data = (object)[
+                'households' => $households,
+                'person' => $person
+            ];
+            $this->view('pages/people/edit', $data);
         }        
     }
 

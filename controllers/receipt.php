@@ -7,8 +7,18 @@
     }
     
     public function index(){
-    //   $this->view('pages/household/add', []);
-      $data = $this->receiptModel->getAll();
+        $receipts = $this->receiptModel->getAll();
+        $households = $this->householdModel->getAll();
+      
+        $households_array = [];
+        foreach ($households as $household) {
+            $households_array[$household->id] = $household;
+        }
+
+      $data = (object) [
+          'receipts' => $receipts,
+          'households_array' => $households_array
+        ];
       $this->view('pages/receipt/index', $data);
     }
 
@@ -50,11 +60,13 @@
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
-                'id'            => (int)$id,
-                'house_no'         => trim($_POST['house_no']),
-                'house_street'     => trim($_POST['house_street']),
-                'house_ward'     => $_POST['house_ward'],
-                'house_city'      => $_POST['house_city']
+                'id' => (int) $id, 
+                'household_id'         => $household_id,
+                'householder_name'         => $household->householder_name,
+                'type_id'         => $_POST['type_id'],
+                'amount'         => $_POST['amount'],
+                'receive_date' => $_POST['receive_date'],
+                'description' => $_POST['description'],
             ];
 
             //validated
@@ -66,8 +78,15 @@
 
         }else{
             //get existing post from model
-            $household = $this->householdModel->getById($id);
-            $this->view('pages/household/edit', $household);
+            $types = $this->typeModel->getAll();
+            $households = $this->householdModel->getAll();
+            $receipt = $this->receiptModel->getById($id);
+            $data = (object)[
+                'types' => $types,
+                'households'  => $households,
+                'receipt' => $receipt
+            ];
+            $this->view('pages/receipt/edit', $data);
         }        
     }
 

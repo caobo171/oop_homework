@@ -2,6 +2,7 @@
   class Household extends Controller {
     public function __construct(){
         $this->householdModel = $this->model('HouseholdModel');
+        $this->peopleModel = $this->model('PeopleModel');
     }
     
     public function index(){
@@ -41,10 +42,13 @@
             //Sanitize post array
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+            $householder = $this->peopleModel->getById($_POST['householder_id']);
             $data = [
                 'id'            => (int)$id,
                 'house_no'         => trim($_POST['house_no']),
                 'house_street'     => trim($_POST['house_street']),
+                'householder_id' => $householder->id,
+                'householder_name' => $householder->name,
                 'house_ward'     => $_POST['house_ward'],
                 'house_city'      => $_POST['house_city']
             ];
@@ -59,7 +63,13 @@
         }else{
             //get existing post from model
             $household = $this->householdModel->getById($id);
-            $this->view('pages/household/edit', $household);
+            $people = $this->peopleModel->getByHouseholdId($household->id);
+
+            $data = (object) [
+                'household' => $household,
+                'people' => $people
+            ];
+            $this->view('pages/household/edit', $data);
         }        
     }
 

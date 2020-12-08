@@ -8,11 +8,19 @@
             $this->db = new Database;
         }
 
-        public function getAll()
-        {
+        public function getAll(){
             $this->db->query(
                 "SELECT *
                  FROM People
+            ");
+            return $results = $this->db->resultSet();
+        }
+
+        public function getByHouseholdId($household_id){
+            $this->db->query(
+                "SELECT *
+                 FROM People
+                 WHERE household_id = {$household_id}
             ");
             return $results = $this->db->resultSet();
         }

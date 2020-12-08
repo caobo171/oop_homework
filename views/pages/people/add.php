@@ -10,6 +10,16 @@
       <input name="name" class="form-control" >
     </div>
     <div class="form-group">
+      <label>Hộ khẩu *</label>
+      <select class="form-control" name = "household_id">
+      <?php foreach($data->households as $item) :?>
+        <option value="<?php echo $item->id; ?>" >
+            <?php echo $item->house_no ?>
+        </option>
+        <?php endforeach; ?>
+        </select>
+    </div>
+    <div class="form-group">
       <label>Số CMND</label>
       <input name="id_card_no" class="form-control" >
     </div>
