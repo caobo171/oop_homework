@@ -16,8 +16,10 @@
                             <span class="input-group-text" id="type">Loại phí</span>
                         </div>
                         <select class="form-control" name = "type_id">
+                            <option>Lọc</option>
                             <?php foreach($data->types as $item) :?>
-                                <option value="<?php echo $item->id; ?>">
+                                <option value="<?php echo $item->id; ?>" 
+                                >
                                     <?php echo $item->type_name ?>
                                 </option>
                                 <?php endforeach; ?>
@@ -27,13 +29,15 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" >Bắt đầu</span>
                         </div>
-                        <input type="date" class="form-control" name="start_date" >
+                        <input type="date" class="form-control" name="start_date" 
+                        value="<?php echo isset($data->queries['start_date']) ? $data->queries['start_date'] : "" ?>">
                     </div>
                     <div class="input-group mb-3 col-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" >Kết thúc</span>
                         </div>
-                        <input type="date" class="form-control" name="end_date">
+                        <input type="date" class="form-control" name="end_date"
+                        value="<?php echo isset($data->queries['end_date']) ? $data->queries['end_date'] : "" ?>">
                     </div>
             </div>
             <table class="table table-striped">
@@ -41,9 +45,9 @@
                 <tr>
                     <th>ID</th>
                     <th>Số nhà</th>
-                    <th>Tiền thu</th>
                     <th>Mô tả</th>
                     <th>Ngày thu</th>
+                    <th>Tiền thu</th>
 				    <th></th>
                 </tr>
               </thead>
@@ -54,7 +58,7 @@
 				<td>#<?php echo $item->id ?></td>
 				<td><?php echo $data->households_array[$item->household_id]->house_no ?></td>
                 <td><?php echo $item->description ?></td>
-                <td><?php echo $item->receive_date ?></td>
+                <td><?php echo date("d/m/Y", strtotime($item->receive_date)); ?></td>
                 <td><?php echo money_format('%i đ',$item->amount) ?></td>
 				<td>
 					<div class="dropdown">

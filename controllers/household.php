@@ -3,6 +3,7 @@
     public function __construct(){
         $this->householdModel = $this->model('HouseholdModel');
         $this->peopleModel = $this->model('PeopleModel');
+        $this->settingsModel = $this->model('SettingsModel');
     }
     
     public function index(){
@@ -29,9 +30,9 @@
                 die('Something went wrong');
             }
         }else{
-            $data = [
-                'title' => '',
-                'body'  => ''
+            $settings = $this->settingsModel->get();
+            $data = (object)[
+                "settings" => $settings
             ];
             $this->view('pages/household/add', $data);
         }
@@ -75,10 +76,11 @@
             //get existing post from model
             $household = $this->householdModel->getById($id);
             $people = $this->peopleModel->getByHouseholdId($household->id);
-
+            $settings = $this->settingsModel->get();
             $data = (object) [
                 'household' => $household,
-                'people' => $people
+                'people' => $people,
+                'settings' => $settings
             ];
             $this->view('pages/household/edit', $data);
         }        

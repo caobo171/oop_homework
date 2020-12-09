@@ -24,7 +24,7 @@
                 } else {
                     $is_add = true;
                 }
-                $query = $query."receive_date >= ".$queries['start_date']."";
+                $query = $query."receive_date >= '".$queries['start_date']."'";
             }
 
             if (isset($queries['end_date'])) {
@@ -33,7 +33,7 @@
                 } else {
                     $is_add = true;
                 }
-                $query = $query." receive_date <= ".$queries['end_date']."";
+                $query = $query." receive_date <= '".$queries['end_date']."' ";
             }
 
             if (isset($queries['type_id'])) {

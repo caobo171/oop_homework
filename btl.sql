@@ -7,8 +7,8 @@ create table if not exists Household(
 	house_ward varchar(255),
 	house_city varchar(255),
 
-	since datetime,
-	last_update datetime
+	since int,
+	last_update int
 );
 
 create table if not exists People(
@@ -26,8 +26,8 @@ create table if not exists People(
 	householder_relationship varchar(255),
 	status varchar(255),
 
-	since datetime,
-	last_update datetime,
+	since int,
+	last_update int,
 
 	foreign key (household_id) REFERENCES Household(id)
 );
@@ -40,8 +40,8 @@ create table if not exists ActionLogs(
 	household_id int,
 	description text,
 
-	since datetime,
-	last_update datetime,
+	since int,
+	last_update int,
 
 	foreign key (people_id) REFERENCES People(id),
 	foreign key (household_id) REFERENCES Household(id)
@@ -52,8 +52,8 @@ CREATE TABLE ReceiptTypes (
 	type_name varchar(255),
 	description text,
 
-	since datetime,
-	last_update datetime
+	since int,
+	last_update int
 );
 
 
@@ -66,9 +66,20 @@ create table if not exists Receipts (
 	receive_date datetime,
 	description text,
 
-	since datetime,
-	last_update datetime,
+	since int,
+	last_update int,
 
 	foreign key (type_id) REFERENCES ReceiptTypes(id),
 	foreign key (household_id) REFERENCES Household(id)
+);
+
+
+create table if not exists Settings (
+	id int PRIMARY KEY ,
+	street varchar(255),
+	ward varchar(255),
+	city varchar(255),
+
+	since int,
+	last_update int
 );

@@ -21,7 +21,8 @@
       $data = (object) [
           'types' => $types,
           'receipts' => $receipts,
-          'households_array' => $households_array
+          'households_array' => $households_array,
+          'queries' => $queries
         ];
       $this->view('pages/receipt/index', $data);
     }

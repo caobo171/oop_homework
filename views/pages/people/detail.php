@@ -3,10 +3,12 @@
 	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4">
         <h2>Thông tin</h2>
         <div class="btn-toolbar mb-2 mb-md-0">
-              <a class="btn btn-sm btn-outline-secondary" href="<?php echo URLROOT; ?>/people/edit/<?php echo $data->person->id; ?>" >
-                Chỉnh sửa
-                <i class="fa fa-plus"></i>
-				</a>
+            <div class="btn-group mr-2">
+                <button class="btn btn-sm btn-outline-secondary" onclick="window.history.back()">Quay lại</button>
+                <a class="btn btn-sm btn-outline-secondary" href="<?php echo URLROOT; ?>/people/edit/<?php echo $data->person->id; ?>">   
+                    Chỉnh sửa
+                <i class="fa fa-edit"></i></a>
+              </div>
             </div>
           </div>
           <div class="container mt-4">

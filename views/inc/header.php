@@ -45,6 +45,12 @@
                   Loại phí
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link ml-2 <?php echo $_GET['url'] == 'settings' ? 'active' : ''; ?>" href="<?php echo URLROOT;?>/settings">
+                <i class="fa fa-cog mr-2" aria-hidden="true"></i>
+                  Cài đặt
+                </a>
+              </li>
             </ul>
           </div>
         </nav>
