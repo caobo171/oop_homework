@@ -7,15 +7,19 @@
     }
     
     public function index(){
-        $receipts = $this->receiptModel->getAll();
+
+        $queries = array();
+        parse_str($_SERVER['QUERY_STRING'], $queries);
+        $receipts = $this->receiptModel->getAll($queries);
         $households = $this->householdModel->getAll();
-      
+        $types = $this->typeModel->getAll();
         $households_array = [];
         foreach ($households as $household) {
             $households_array[$household->id] = $household;
         }
 
       $data = (object) [
+          'types' => $types,
           'receipts' => $receipts,
           'households_array' => $households_array
         ];

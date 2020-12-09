@@ -57,6 +57,16 @@
         }
     }
 
+    public function detail($id) {
+        $person = $this->peopleModel->getById($id);
+        $household = $this->householdModel->getById($person->household_id);
+        $data = (object)[
+            'household' => $household,
+            'person' => $person
+        ];
+        $this->view('pages/people/detail', $data);
+    }
+
     public function edit($id) {
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             //Sanitize post array

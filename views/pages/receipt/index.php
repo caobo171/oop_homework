@@ -10,6 +10,32 @@
             </div>
           </div>
           <div class="table-responsive">
+                <div class="row" id="filter">
+                    <div class="input-group mb-3 col-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="type">Loại phí</span>
+                        </div>
+                        <select class="form-control" name = "type_id">
+                            <?php foreach($data->types as $item) :?>
+                                <option value="<?php echo $item->id; ?>">
+                                    <?php echo $item->type_name ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    <div class="input-group mb-3 col-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" >Bắt đầu</span>
+                        </div>
+                        <input type="date" class="form-control" name="start_date" >
+                    </div>
+                    <div class="input-group mb-3 col-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" >Kết thúc</span>
+                        </div>
+                        <input type="date" class="form-control" name="end_date">
+                    </div>
+            </div>
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -63,4 +89,18 @@
               </tbody>
             </table>
           </div>
+          <script>
+            
+            $('#filter input').change(function(e) {
+                var queryParams = new URLSearchParams(window.location.search);
+                queryParams.set($(this).attr('name'), $(this).val());
+                window.location.search = queryParams.toString();
+            })
+
+            $('#filter select').change(function(e) {
+                var queryParams = new URLSearchParams(window.location.search);
+                queryParams.set($(this).attr('name'), $(this).val());
+                window.location.search = queryParams.toString();
+            })
+        </script>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

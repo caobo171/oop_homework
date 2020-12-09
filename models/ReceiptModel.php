@@ -8,12 +8,44 @@
             $this->db = new Database;
         }
 
-        public function getAll()
+        public function getAll($queries)
         {
-            $this->db->query(
-                "SELECT *
+            $query = "
+                SELECT *
                  FROM Receipts
-            ");
+            ";
+            if (isset($queries['start_date']) ||isset($queries['end_date']) || isset($queries['type_id'])  ) {
+                $query = $query." WHERE ";
+            }
+            $is_add = false;
+            if (isset($queries['start_date'])) {
+                if ($is_add) {
+                    $query = $query. " and ";
+                } else {
+                    $is_add = true;
+                }
+                $query = $query."receive_date >= ".$queries['start_date']."";
+            }
+
+            if (isset($queries['end_date'])) {
+                if ($is_add) {
+                    $query = $query. " and ";
+                } else {
+                    $is_add = true;
+                }
+                $query = $query." receive_date <= ".$queries['end_date']."";
+            }
+
+            if (isset($queries['type_id'])) {
+                if ($is_add) {
+                    $query = $query. " and ";
+                } else {
+                    $is_add = true;
+                }
+                $query = $query." type_id = ".$queries['type_id']."";
+            }
+
+            $this->db->query($query);
             return $results = $this->db->resultSet();
         }
 
