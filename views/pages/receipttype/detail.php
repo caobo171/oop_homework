@@ -6,15 +6,16 @@
             
             <small class="form-text text-muted"><?php echo $data->type->description ?></small>
             </div>    
-       
             <div class="btn-toolbar mb-2 mb-md-0">
-              <a class="btn btn-sm btn-outline-secondary" href="<?php echo URLROOT; ?>/receipt/add" >
-                Thêm khoản thu
-                <i class="fa fa-plus"></i>
-				</a>
-            </div>
-          </div>
-          <div class="table-responsive">
+              <div class="btn-group mr-2">
+                  <button class="btn btn-sm btn-outline-secondary" onclick="window.history.back()">Quay lại</button>
+                  <a class="btn btn-sm btn-outline-secondary" href="<?php echo URLROOT; ?>/receipttype/edit/<?php echo $data->type->id; ?>">   
+                      Chỉnh sửa &nbsp;
+                  <i class="fa fa-edit"></i></a>
+                </div>
+              </div>
+          	</div>
+          <div class="table-responsive focus">
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -23,7 +24,7 @@
                     <th>Tiền thu</th>
                     <th>Mô tả</th>
                     <th>Ngày thu</th>
-				    <th></th>
+				            <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -52,11 +53,11 @@
 
               <?php endforeach; ?>
               <tr>
-				<td></td>
-				<td></td>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td>Tổng tiền</td>
-				<th> 
+				      <th> 
                     <?php echo money_format('%i đ',array_sum(
                         array_map(function($e) {
                             return $e->amount;

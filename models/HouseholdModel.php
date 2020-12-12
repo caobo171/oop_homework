@@ -13,6 +13,7 @@
             $this->db->query(
                 "SELECT *
                  FROM Household
+                 ORDER BY id DESC 
             ");
             return $results = $this->db->resultSet();
         }

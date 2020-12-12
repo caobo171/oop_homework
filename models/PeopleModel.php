@@ -12,6 +12,18 @@
             $this->db->query(
                 "SELECT *
                  FROM People
+                 WHERE status = 0
+                 ORDER BY id DESC 
+            ");
+            return $results = $this->db->resultSet();
+        }
+
+        public function nonAssignPeople(){
+            $this->db->query(
+                "SELECT *
+                 FROM People
+                 WHERE status = -1
+                 ORDER BY id DESC 
             ");
             return $results = $this->db->resultSet();
         }
@@ -20,7 +32,8 @@
             $this->db->query(
                 "SELECT *
                  FROM People
-                 WHERE household_id = {$household_id}
+                 WHERE household_id = {$household_id} and status = 0
+                 ORDER BY id DESC 
             ");
             return $results = $this->db->resultSet();
         }
@@ -43,6 +56,23 @@
             $this->db->bind(':since', time());
             $this->db->bind(':last_update',time());
 
+            // Execute
+            $res = $this->db->execute();
+            if($res){
+                return $this->db->lastInsertId();;
+            } else {
+                return false;
+            }
+        }
+
+        public function updateStatus($data){
+                $this->db->query('UPDATE People SET 
+                status = :status, 
+                last_update = :last_update WHERE id = :id');
+                $this->db->bind(':id', $data['id']);
+                $this->db->bind(':status', $data['status']);
+                $this->db->bind(':last_update', time());
+        
             // Execute
             if($this->db->execute()){
                 return true;

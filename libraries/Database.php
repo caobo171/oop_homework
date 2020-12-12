@@ -64,6 +64,10 @@
       return $this->stmt->execute();
     }
 
+    public function lastInsertId(){
+      return $this->dbh->lastInsertId();
+    }
+
     // Get result set as array of objects
     public function resultSet(){
       $this->execute();
@@ -75,6 +79,7 @@
       $this->execute();
       return $this->stmt->fetch(PDO::FETCH_OBJ);
     }
+
 
     // Get row count
     public function rowCount(){

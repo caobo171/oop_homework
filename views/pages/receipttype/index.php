@@ -4,12 +4,14 @@
             <h1 class="h2">Loại Khoản thu</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <a class="btn btn-sm btn-outline-secondary" href="<?php echo URLROOT; ?>/receipttype/add" >
-                Thêm loại khoản thu
+                Thêm loại khoản thu &nbsp;
                 <i class="fa fa-plus"></i>
-				</a>
+				      </a>
             </div>
           </div>
-          <div class="table-responsive">
+          <div class="table-responsive focus">
+
+		  	<?php if (count($data) > 0): ?>
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -44,6 +46,9 @@
 
               <?php endforeach; ?>
               </tbody>
-            </table>
+			</table>
+			  	<?php else: ?>
+				<img class="empty" src="<?php echo URLROOT; ?>/static/image/empty.png"/>
+			  <?php endif; ?>
           </div>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

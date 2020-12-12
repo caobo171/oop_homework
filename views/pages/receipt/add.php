@@ -2,8 +2,7 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <h1 class="h2">Thêm khoản thu</h1>
 <div class="row">
-<div class="col-3"></div>
-<div class="col-6 mt-4">
+<div class="col mt-4 focus">
   <form method="POST" action="<?php echo URLROOT; ?>/receipt/add">
     <div class="form-group">
       <label>Hộ dân</label>
@@ -39,11 +38,9 @@
       <textarea name="description" class="form-control" ></textarea>
     </div>
     
-    <button type="submit" class="btn btn-primary">Lưu</button>
-  </form>
-</div>
-<div class="col-3">
-</div>
+      <button type="submit" class="btn btn-primary">Lưu</button>
+    </form>
+  </div>
 </div>
 
 

@@ -18,10 +18,11 @@
             $households_array[$household->id] = $household;
         }
 
-      $data = (object) [
+        $data = (object) [
           'types' => $types,
           'receipts' => $receipts,
           'households_array' => $households_array,
+          'households' =>  $households,
           'queries' => $queries
         ];
       $this->view('pages/receipt/index', $data);

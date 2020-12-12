@@ -4,6 +4,7 @@
         $this->householdModel = $this->model('HouseholdModel');
         $this->peopleModel = $this->model('PeopleModel');
         $this->settingsModel = $this->model('SettingsModel');
+        $this->actionlogModel = $this->model('ActionLogModel');
     }
     
     public function index(){
@@ -41,10 +42,11 @@
     public function detail($id) {
         $household = $this->householdModel->getById($id);
         $people = $this->peopleModel->getByHouseholdId($household->id);
-
+        $actionlogs = $this->actionlogModel->getByHouseholdId($household->id);
         $data = (object) [
             'household' => $household,
-            'people' => $people
+            'people' => $people,
+            'actionlogs' => $actionlogs
         ];
         $this->view('pages/household/detail', $data);
     }

@@ -8,6 +8,40 @@ body {
     vertical-align: text-bottom;
 }
 
+.focus {
+    max-width: 500px;
+    margin: auto;
+    border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    padding: 20px;
+    margin-bottom: 80px;
+}
+
+.focus {
+    max-width: 500px;
+    margin: auto;
+    border-radius: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    padding: 20px;
+    margin-bottom: 80px;
+}
+
+.table-responsive.focus {
+    max-width: 800px;
+}
+
+.table-responsive.focus .empty {
+    text-align: center;
+}
+.table-responsive.focus .empty img {
+    height: 280px;
+    margin: auto;
+}
+
+.table-responsive.focus .input-group-text{
+    font-size: 12px;
+}
+
 /*
    * Sidebar
    */
@@ -27,7 +61,6 @@ form button.btn {
     width: 100%;
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: 100px;
 }
 
 .sidebar h3 {

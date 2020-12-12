@@ -5,11 +5,6 @@
     }
     
     public function index(){
-      $data = [
-        'title' => 'SharePosts',
-        'description' => 'Simple social network built on the TraversyMVC PHP framework'
-      ];
-     
       $data = $this->householdModel->getAll();
       $this->view('pages/index', $data);
     }
@@ -17,7 +12,7 @@
     public function about(){
       $data = [
         'title' => 'About Us',
-        'description' => 'App to share posts with other users'
+        'description' => 'App to manage household'
       ];
 
       $this->view('pages/about', $data);

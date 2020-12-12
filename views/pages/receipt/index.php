@@ -4,40 +4,58 @@
             <h1 class="h2">Khoản thu</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <a class="btn btn-sm btn-outline-secondary" href="<?php echo URLROOT; ?>/receipt/add" >
-                Thêm khoản thu
+                Thêm khoản thu &nbsp;
                 <i class="fa fa-plus"></i>
 				</a>
             </div>
           </div>
-          <div class="table-responsive">
+          <div class="table-responsive focus">
                 <div class="row" id="filter">
-                    <div class="input-group mb-3 col-6">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="type">Loại phí</span>
-                        </div>
-                        <select class="form-control" name = "type_id">
-                            <option>Lọc</option>
-                            <?php foreach($data->types as $item) :?>
-                                <option value="<?php echo $item->id; ?>" 
-                                >
-                                    <?php echo $item->type_name ?>
-                                </option>
+                    <div class="col col-8">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="type">Loại phí</span>
+                            </div>
+                            <select class="form-control" name = "type_id">
+                                <?php foreach($data->types as $item) :?>
+                                    <option value="<?php echo $item->id;?>" <?php echo isset($data->queries['type_id']) && $data->queries['type_id'] == $item->id ? 'selected' : ''?>
+                                    >
+                                        <?php echo $item->type_name ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                    <div class="input-group mb-3 col-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" >Bắt đầu</span>
+
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="type">Hộ dân</span>
+                            </div>
+                            <select class="form-control" name = "household_id">
+                                <?php foreach($data->households as $item) :?>
+                                    <option value="<?php echo $item->id;?>" <?php echo isset($data->queries['household_id']) && $data->queries['household_id'] == $item->id ? 'selected' : ''?>
+                                    >
+                                        <?php echo $item->house_no ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
-                        <input type="date" class="form-control" name="start_date" 
-                        value="<?php echo isset($data->queries['start_date']) ? $data->queries['start_date'] : "" ?>">
                     </div>
-                    <div class="input-group mb-3 col-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" >Kết thúc</span>
+                    <div class="col">
+                        <div class="input-group  mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" >Bắt đầu</span>
+                            </div>
+                            <input type="date" class="form-control" name="start_date" 
+                            value="<?php echo isset($data->queries['start_date']) ? $data->queries['start_date'] : "" ?>">
                         </div>
-                        <input type="date" class="form-control" name="end_date"
-                        value="<?php echo isset($data->queries['end_date']) ? $data->queries['end_date'] : "" ?>">
+                        <div class="input-group  mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" >Kết thúc</span>
+                            </div>
+                            <input type="date" class="form-control" name="end_date"
+                            value="<?php echo isset($data->queries['end_date']) ? $data->queries['end_date'] : "" ?>">
+                        </div>
+                                    
                     </div>
             </div>
             <table class="table table-striped">
@@ -64,7 +82,6 @@
 					<div class="dropdown">
 						<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 						<div class="dropdown-menu">
-                        <a class="dropdown-item" href="<?php echo URLROOT;?>/receipt/detail/<?php echo $item->id?>">Chi tiết</a>  
                         <a class="dropdown-item" href="<?php echo URLROOT;?>/receipt/edit/<?php echo $item->id?>">Sửa</a>  
                         <form action="<?php echo URLROOT;?>/receipt/delete/<?php echo $item->id ?>" method="post">
 								<input  class="dropdown-item" type="submit" value="Xoá" >

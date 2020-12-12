@@ -4,6 +4,7 @@
 <div class="row">
 <div class="col-3"></div>
 <div class="col-6 mt-4">
+  <div class="focus">
   <form method="POST" action="<?php echo URLROOT; ?>/people/edit/<?php echo $data->person->id?>">
     <div class="form-group">
       <label>Họ và tên *</label>
@@ -63,6 +64,7 @@
 
     <button type="submit" class="btn btn-primary mb-4">Lưu</button>
   </form>
+  </div>
 </div>
 <div class="col-3">
 </div>

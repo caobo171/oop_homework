@@ -3,6 +3,7 @@
     public function __construct(){
         $this->peopleModel = $this->model('PeopleModel');
         $this->householdModel = $this->model('HouseholdModel');
+        $this->actionlogModel = $this->model('ActionLogModel');
     }
     
     public function index(){
@@ -11,10 +12,8 @@
       $households = $this->householdModel->getAll();
     
       $households_array = [];
-        foreach ($households as $household) {
-
-                $households_array[$household->id] = $household;
-            
+      foreach ($households as $household) {
+            $households_array[$household->id] = $household;
         }
       
 
@@ -39,19 +38,39 @@
                 'job'      => $_POST['job'],
                 'id_card_no' => $_POST['id_card_no'],
                 'job_place' => $_POST['job_place'],
-                'native_place' => $_POST['native_place']
+                'native_place' => $_POST['native_place'],
+                'status' => 1,
             ];
             //validated
-            if($this->peopleModel->add($data)){
-                redirect('people');
+            $res = $this->peopleModel->add($data);
+
+            if($res){
+
+                $action_log = [
+                    "people_id" => $res,
+                    "name" => "Thêm nhân khẩu ".$data['name'],
+                    'household_id' => $data['household_id'],
+                    'description' => '',
+                    'action_type' => 'add'
+                ];
+
+                $this->actionlogModel->add($action_log);
+                redirect('household/detail/'.$data['household_id']);
             }else{
                 die('Something went wrong');
             }
         }else{
             //get existing post from model
+            $queries = array();
+            parse_str($_SERVER['QUERY_STRING'], $queries);
+            $household = null ;
+            if (isset($queries['household_id'])) {
+                $household = $this->householdModel->getById($queries['household_id']);
+            }
             $households = $this->householdModel->getAll();
             $data = (object)[
                 'households' => $households,
+                'household' => $household
             ];
             $this->view('pages/people/add', $data);
         }
@@ -85,9 +104,36 @@
                 'native_place' => $_POST['native_place']
             ];
 
+            $person = $this->peopleModel->getById($id);
+            if ($person->id != $data['household_id']) { 
+                $action_log = [
+                    "people_id" => $person->id,
+                    "name" => "Thêm nhân khẩu ".$data['name'],
+                    'household_id' => $data['household_id'],
+                    'description' => '',
+                    'action_type' => 'add'
+                ];
+                $this->actionlogModel->add($action_log);
+                if ($person->status == 0 ) {
+                    $action_log_2 = [
+                        "people_id" => $person->id,
+                        "name" => "Chuyển nhân khẩu ".$person->name." đi",
+                        'household_id' => $person->household_id,
+                        'description' => '',
+                        'action_type' => 'remove'
+                    ];
+                    $this->actionlogModel->add($action_log_2);
+                }
+            } 
+            
+
             //validated
             if($this->peopleModel->update($data)){
-                redirect('people');
+                $this->peopleModel->updateStatus([
+                    "status"=> 0,
+                    "id" => $data['id']
+                ]);
+                redirect('household/detail/'.$data['household_id']);
             }else{
                 die('Something went wrong');
             }
@@ -112,8 +158,25 @@
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             //validated
-            if($this->peopleModel->delete($id)){
-                redirect('people');
+            $person = $this->peopleModel->getById($id);
+
+            $old_household_id = $person->household_id;
+            $data = [
+                "id" => $person->id,
+                "status" => -1,
+            ];
+
+            $action_log = [
+                "people_id" => $person->id,
+                "name" => "Chuyển nhân khẩu ".$person->name." đi",
+                'household_id' => $old_household_id,
+                'description' => '',
+                'action_type' => 'remove'
+            ];
+            $this->actionlogModel->add($action_log);
+
+            if($this->peopleModel->updateStatus($data)){
+                redirect('household/detail/'.$old_household_id);
             }else{
                 die('Something went wrong');
             }

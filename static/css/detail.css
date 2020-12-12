@@ -1,21 +1,14 @@
-.col.col1 .row{
-    justify-content: flex-end;
-    margin-right: 40px;
+.container.focus {
+    padding: 20px 40px;
 }
-
-.col.col2 .row{
-    justify-content: flex-start;
-    margin-left: 40px;
-}
-
-.col .label {
+.container.focus .label {
     font-weight: 600;
     color: gray;
     margin-right: 8px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
-.col .value {
+.container.focus .value {
     margin-right: 14px;
-    font-size: 18px;
+    font-size: 16px;
 }

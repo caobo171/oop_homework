@@ -1,7 +1,7 @@
 
 <?php require APPROOT . '/views/inc/header.php'; ?>
 	<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
-            <h1 class="h2">Nhân khẩu</h1>
+            <h1 class="h2">Nhân khẩu chưa có hộ</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <a class="btn btn-sm btn-outline-secondary" href="<?php echo URLROOT; ?>/people/add" >
                 Thêm nhân khẩu &nbsp;
@@ -15,7 +15,6 @@
                 <tr>
                   <th>Số CMND</th>
                   <th>Tên</th>
-                  <th>Số nhà</th>
                   <th>Giới tính</th>
                   <th>Ngày sinh</th>
 				  <th></th>
@@ -27,7 +26,6 @@
               <tr>
 				<td><?php echo $item->id_card_no ?></td>
                 <td><?php echo $item->name ?></td>
-                <td><?php echo $data->households_array[$item->household_id]->house_no ?></td>
 				<td><?php echo $item->sex ? 'Nam' : 'Nữ' ?></td>
 				<td><?php echo date('d/m/Y',strtotime($item->birth_day)) ?></td>
 				<td>

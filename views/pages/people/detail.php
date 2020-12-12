@@ -6,15 +6,12 @@
             <div class="btn-group mr-2">
                 <button class="btn btn-sm btn-outline-secondary" onclick="window.history.back()">Quay lại</button>
                 <a class="btn btn-sm btn-outline-secondary" href="<?php echo URLROOT; ?>/people/edit/<?php echo $data->person->id; ?>">   
-                    Chỉnh sửa
+                    Chỉnh sửa &nbsp;
                 <i class="fa fa-edit"></i></a>
               </div>
             </div>
           </div>
-          <div class="container mt-4">
-             <div class="row">
-                 <div class="col col-1"> </div>
-                 <div class="col col-5 col2">
+          <div class="container mt-4 focus">
                      <div class="row mb-2">
                          <span class="label">
                          <i class="fa fa-address-book mr-2" aria-hidden="true"></i>
@@ -39,8 +36,6 @@
                          Quan hệ với chủ hộ: </span>
                          <span class="value"><?php echo $data->person->householder_relationship; ?></span>
                     </div>
-                </div>
-                 <div class="col  col-5 col2">
                     <div class="row mb-2">
                          <span class="label">
                          <i class="fa fa-male mr-2" aria-hidden="true"></i>
@@ -66,8 +61,5 @@
                          Hộ dân: </span>
                          <span class="value"><?php echo $data->household->house_no; ?></span>
                     </div>
-                </div>
-                <div class="col col-1 "> </div>
-            </div>
           </div>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

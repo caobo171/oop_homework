@@ -2,20 +2,20 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <h1 class="h2">Thêm nhân khẩu</h1>
 <div class="row">
-<div class="col-3"></div>
-<div class="col-6 mt-4">
+<div class="col focus mt-4">
   <form method="POST" action="<?php echo URLROOT; ?>/people/add">
     <div class="form-group">
       <label>Họ và tên *</label>
       <input name="name" class="form-control" >
     </div>
+
     <div class="form-group">
       <label>Hộ khẩu *</label>
       <select class="form-control" name = "household_id">
-      <?php foreach($data->households as $item) :?>
-        <option value="<?php echo $item->id; ?>" >
-            <?php echo $item->house_no ?>
-        </option>
+        <?php foreach($data->households as $item) :?>
+          <option value="<?php echo $item->id; ?>" <?php echo ($data->household != null && $data->household->id == $item->id) ? 'selected' :''; ?> >
+              <?php echo $item->house_no ?>
+          </option>
         <?php endforeach; ?>
         </select>
     </div>
@@ -40,7 +40,7 @@
     </div>
     <div class="form-row">
         <div class="form-group col">
-            <label>Nghệ nghiệp</label>
+            <label>Nghề nghiệp</label>
             <input name="job" class="form-control">
         </div>
         <div class="form-group col">
@@ -60,10 +60,8 @@
     </div>
 
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Thêm nhân khẩu</button>
   </form>
-</div>
-<div class="col-3">
 </div>
 </div>
 

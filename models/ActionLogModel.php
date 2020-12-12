@@ -13,8 +13,19 @@
             $this->db->query(
                 "SELECT *
                  FROM ActionLogs
+                 ORDER BY id DESC 
             ");
             return $results = $this->db->resultSet();
+        }
+
+        public function getByHouseholdId($id) {
+            $this->db->query(
+                "SELECT *
+                 FROM ActionLogs
+                 WHERE household_id = {$id}
+                 ORDER BY id DESC 
+            ");
+            return $results = $this->db->resultSet();   
         }
 
         public function add($data){
@@ -25,7 +36,7 @@
             $this->db->bind(':people_id', $data['people_id']);
             $this->db->bind(':household_id', $data['household_id']);
             $this->db->bind(':description', $data['description']);
-
+            $this->db->bind(':name', $data['name']);
             $this->db->bind(':since', time());
             $this->db->bind(':last_update',time());
 

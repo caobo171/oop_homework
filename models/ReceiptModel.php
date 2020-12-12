@@ -12,7 +12,7 @@
         {
             $query = "
                 SELECT *
-                 FROM Receipts
+                FROM Receipts
             ";
             if (isset($queries['start_date']) ||isset($queries['end_date']) || isset($queries['type_id'])  ) {
                 $query = $query." WHERE ";
@@ -45,6 +45,16 @@
                 $query = $query." type_id = ".$queries['type_id']."";
             }
 
+            if (isset($queries['household_id'])) {
+                if ($is_add) {
+                    $query = $query. " and ";
+                } else {
+                    $is_add = true;
+                }
+                $query = $query." household_id = ".$queries['household_id']."";
+            }
+
+            $query.= " ORDER BY id DESC ";
             $this->db->query($query);
             return $results = $this->db->resultSet();
         }
