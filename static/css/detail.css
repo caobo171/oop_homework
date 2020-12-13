@@ -12,3 +12,8 @@
     margin-right: 14px;
     font-size: 16px;
 }
+
+.focus ul.list-group {
+    max-height: 250px;
+    overflow-y: scroll;
+}

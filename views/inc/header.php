@@ -35,18 +35,18 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link ml-2 <?php echo strpos($_GET['url'], 'unassign') !== false ? 'active' : ''; ?>" href="<?php echo URLROOT;?>/unassign">
-                <i class="fa fa-users mr-2" aria-hidden="true"></i>
+                <i class="fa fa-user-circle mr-2" aria-hidden="true"></i>
                   Chưa có hộ
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link ml-2 <?php echo strpos($_GET['url'], 'receipt') !== false && strpos($_GET['url'], 'receipttype') == false ? 'active' : ''; ?>" href="<?php echo URLROOT;?>/receipt">
+                <a class="nav-link ml-2 <?php echo (strpos($_GET['url'], 'receipt') !== false && !(strpos($_GET['url'], 'receipttype') !== false)) ? 'active' : ''; ?>" href="<?php echo URLROOT;?>/receipt">
                 <i class="fa fa-money mr-2" aria-hidden="true"></i>
                   Phí thu
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link ml-2 <?php strpos($_GET['url'], 'receipttype') !== false ? 'active' : ''; ?>" href="<?php echo URLROOT;?>/receipttype">
+                <a class="nav-link ml-2 <?php echo strpos($_GET['url'], 'receipttype') !== false ? 'active' : ''; ?>" href="<?php echo URLROOT;?>/receipttype">
                 <i class="fa fa-object-group mr-2" aria-hidden="true"></i>
                   Loại phí
                 </a>

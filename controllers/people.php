@@ -8,21 +8,24 @@
     
     public function index(){
     //   $this->view('pages/household/add', []);
-      $people = $this->peopleModel->getAll();
-      $households = $this->householdModel->getAll();
+        $queries = array();
+        parse_str($_SERVER['QUERY_STRING'], $queries);
+        $people = $this->peopleModel->getAll($queries);
+        $households = $this->householdModel->getAll();
     
-      $households_array = [];
-      foreach ($households as $household) {
+        $households_array = [];
+        foreach ($households as $household) {
             $households_array[$household->id] = $household;
         }
       
 
-      $data = (object)[
-          'households_array' => $households_array,
-          'people' => $people
-      ];
+        $data = (object)[
+            'households_array' => $households_array,
+            'people' => $people,
+            'queries' => $queries
+        ];
 
-      $this->view('pages/people/index', $data);
+        $this->view('pages/people/index', $data);
     }
 
     public function add(){

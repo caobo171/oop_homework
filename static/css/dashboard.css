@@ -134,6 +134,10 @@ form button.btn {
     box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
 
+.form-control:focus {
+    box-shadow: 0 0 0 1px rgba(0, 123, 255, .25);
+}
+
 /*
    * Utilities
    */

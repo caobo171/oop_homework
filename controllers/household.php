@@ -69,7 +69,7 @@
 
             //validated
             if($this->householdModel->update($data)){
-                redirect('household');
+                redirect('household/detail/'.$id);
             }else{
                 die('Something went wrong');
             }

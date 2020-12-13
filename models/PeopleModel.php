@@ -8,13 +8,19 @@
             $this->db = new Database;
         }
 
-        public function getAll(){
-            $this->db->query(
-                "SELECT *
-                 FROM People
-                 WHERE status = 0
-                 ORDER BY id DESC 
-            ");
+        public function getAll($queries){
+            $query =  "SELECT *
+                FROM People
+                WHERE status = 0
+            ";
+
+            if (isset($queries['q'])) {
+                $query = $query. " and ";
+                $query = $query."name LIKE '%".$queries['q']."%' ";
+            }
+
+            $query .= " ORDER BY id";
+            $this->db->query($query);
             return $results = $this->db->resultSet();
         }
 

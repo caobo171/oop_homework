@@ -10,6 +10,16 @@
             </div>
           </div>
           <div class="table-responsive focus">
+          	<div class="row" id="filter">
+			  	<div class="input-group mb-2 px-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="type">
+						<i class="fa fa-search" aria-hidden="true"></i>	
+						&nbsp;Tìm kiếm</span>
+                    </div>
+                    <input class="form-control" name = "q" placeholder="Tìm kiếm dân cư" value="<?php echo isset($data->queries['q']) ? $data->queries['q'] : '' ?>"></input>
+                </div>
+			</div>
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -49,5 +59,16 @@
                 
               </tbody>
             </table>
-          </div>
+		  </div>
+          <script>
+            
+            $('#filter input').keypress(function(e) {
+				if(e.code == 'Enter') {
+					var queryParams = new URLSearchParams(window.location.search);
+					queryParams.set($(this).attr('name'), $(this).val());
+					window.location.search = queryParams.toString();
+				}
+
+            });
+        </script>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
