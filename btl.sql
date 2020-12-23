@@ -24,7 +24,7 @@ create table if not exists People(
 	job_place text,
 	household_id int,
 	householder_relationship varchar(255),
-	status varchar(255),
+	status int,
 
 	since int,
 	last_update int,
