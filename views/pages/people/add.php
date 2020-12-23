@@ -6,7 +6,7 @@
   <form method="POST" action="<?php echo URLROOT; ?>/people/add">
     <div class="form-group">
       <label>Họ và tên *</label>
-      <input name="name" class="form-control" >
+      <input name="name" class="form-control" placeholder="VD: Nguyễn Văn C">
     </div>
 
     <div class="form-group">
@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
       <label>Số CMND</label>
-      <input name="id_card_no" class="form-control" >
+      <input name="id_card_no" class="form-control" placeholder="VD: 00001213010" >
     </div>
     <div class="form-group row col">
         <label>Giới tính</label>
@@ -41,21 +41,21 @@
     <div class="form-row">
         <div class="form-group col">
             <label>Nghề nghiệp</label>
-            <input name="job" class="form-control">
+            <input name="job" class="form-control" placeholder="VD: Giáo viên, Kỹ sư">
         </div>
         <div class="form-group col">
             <label>Nơi làm việc</label>
-            <input name="job_place" class="form-control" >
+            <input name="job_place" class="form-control" placeholder="VD: Cục thuế Thanh Oai" >
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col">
             <label>Ngày sinh</label>
-            <input name="birth_day" class="form-control"  type="date">
+            <input name="birth_day" class="form-control"  type="date" value="">
         </div>
         <div class="form-group col">
             <label>Nơi sinh</label>
-            <input name="native_place" class="form-control" >
+            <input name="native_place" class="form-control" placeholder="VD:Bệnh viện Vân Đình, Ứng Hoà, Hà Nội">
         </div>
     </div>
 

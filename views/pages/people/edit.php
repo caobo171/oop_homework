@@ -24,6 +24,10 @@
       <label>Số CMND *</label>
       <input name="id_card_no" class="form-control" value="<?php echo $data->person->id_card_no?>">
     </div>
+    <div class="form-group">
+      <label>Quan hệ với chủ hộ</label>
+      <input name="householder_relationship" class="form-control" value="<?php echo $data->person->householder_relationship?>">
+    </div>
     <div class="form-group row col">
         <label>Giới tính</label>
          <div class="form-check ml-2">
@@ -41,7 +45,7 @@
     </div>
     <div class="form-row">
         <div class="form-group col">
-            <label>Nghệ nghiệp</label>
+            <label>Nghề nghiệp</label>
             <input name="job" class="form-control" value="<?php echo $data->person->job?>" >
         </div>
         <div class="form-group col">

@@ -104,7 +104,8 @@
                 'ethnic'   => $_POST['ethnic'],
                 'id_card_no' => $_POST['id_card_no'],
                 'job_place' => $_POST['job_place'],
-                'native_place' => $_POST['native_place']
+                'native_place' => $_POST['native_place'],
+                'householder_relationship' => isset($_POST['householder_relationship']) ? $_POST['householder_relationship'] : '',
             ];
 
             $person = $this->peopleModel->getById($id);
@@ -187,3 +188,4 @@
         }
     }
   }
+?>

@@ -24,11 +24,11 @@
 
               <?php foreach($data->people as $item) :?>
               <tr>
-				<td><?php echo $item->id_card_no ?></td>
+				      <td><?php echo $item->id_card_no ?></td>
                 <td><?php echo $item->name ?></td>
-				<td><?php echo $item->sex ? 'Nam' : 'Nữ' ?></td>
-				<td><?php echo date('d/m/Y',strtotime($item->birth_day)) ?></td>
-				<td>
+				        <td><?php echo $item->sex ? 'Nam' : 'Nữ' ?></td>
+				        <td><?php echo date('d/m/Y',strtotime($item->birth_day)) ?></td>
+				      <td>
 					<div class="dropdown">
 						<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
 						<div class="dropdown-menu">

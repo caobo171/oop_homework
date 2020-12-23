@@ -18,6 +18,7 @@
                             </div>
                             <select class="form-control" name = "type_id">
                                 <?php foreach($data->types as $item) :?>
+                                    <option value="null">Tất cả</option>
                                     <option value="<?php echo $item->id;?>" <?php echo isset($data->queries['type_id']) && $data->queries['type_id'] == $item->id ? 'selected' : ''?>
                                     >
                                         <?php echo $item->type_name ?>
@@ -31,6 +32,7 @@
                                 <span class="input-group-text" id="type">Hộ dân</span>
                             </div>
                             <select class="form-control" name = "household_id">
+                                <option value="null">Tất cả</option>
                                 <?php foreach($data->households as $item) :?>
                                     <option value="<?php echo $item->id;?>" <?php echo isset($data->queries['household_id']) && $data->queries['household_id'] == $item->id ? 'selected' : ''?>
                                     >
@@ -120,7 +122,14 @@
 
             $('#filter select').change(function(e) {
                 var queryParams = new URLSearchParams(window.location.search);
-                queryParams.set($(this).attr('name'), $(this).val());
+                console.log($(this).val() != "null")
+                console.log($(this).val());
+                if ($(this).val() != "null") {
+                    queryParams.set($(this).attr('name'), $(this).val());
+                } else {
+                    queryParams.delete($(this).attr('name'));
+                }
+                
                 window.location.search = queryParams.toString();
             })
         </script>

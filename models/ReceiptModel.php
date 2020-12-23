@@ -14,7 +14,7 @@
                 SELECT *
                 FROM Receipts
             ";
-            if (isset($queries['start_date']) ||isset($queries['end_date']) || isset($queries['type_id'])  ) {
+            if (isset($queries['start_date']) ||isset($queries['end_date']) || isset($queries['type_id']) || isset($queries['household_id']) ) {
                 $query = $query." WHERE ";
             }
             $is_add = false;
@@ -55,6 +55,7 @@
             }
 
             $query.= " ORDER BY id DESC ";
+
             $this->db->query($query);
             return $results = $this->db->resultSet();
         }
@@ -151,3 +152,4 @@
         }
 
     }
+?>

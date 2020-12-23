@@ -51,8 +51,10 @@
                 <tr>
                   <th>Số CMND</th>
                   <th>Tên</th>
+				  <th>Quan hệ với chủ hộ</th>
                   <th>Giới tính</th>
                   <th>Ngày sinh</th>
+				  
 				  <th></th>
                 </tr>
               </thead>
@@ -62,6 +64,7 @@
               <tr>
 				<td><?php echo $item->id_card_no ?></td>
                 <td><?php echo $item->name ?></td>
+				<td><?php echo $item->householder_relationship != '' ? $item->householder_relationship : '<span class="text-danger">Chưa điền</span>' ?></td>
 				<td><?php echo $item->sex ? 'Nam' : 'Nữ' ?></td>
 				<td><?php echo date('d/m/Y',strtotime($item->birth_day)) ?></td>
 				<td>
